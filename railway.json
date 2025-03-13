@@ -1,0 +1,18 @@
+{
+  "services": [
+    {
+      "name": "backend",
+      "buildCommand": "docker build -t backend ./backend",
+      "startCommand": "docker run -p 5000:5000 backend"
+    },
+    {
+      "name": "frontend",
+      "buildCommand": "docker build -t frontend ./frontend",
+      "startCommand": "docker run -p 3000:3000 frontend"
+    },
+    {
+      "name": "database",
+      "type": "postgres"
+    }
+  ]
+}

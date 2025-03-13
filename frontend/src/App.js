@@ -9,7 +9,8 @@ const App = () => {
   const fetchWeather = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:5000/weather?city=${city}` //use this for local deployment
+        // `http://localhost:5000/weather?city=${city}` // use this for local deployment
+        "https://sunsafe-website-backend.onrender.com/weather?city=${city}" // use this for render deployment
       );
       setWeather(response.data);
       setError(null);

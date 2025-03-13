@@ -1,0 +1,34 @@
+version: "3.8"
+
+services:
+  # Backend (Flask)
+  backend:
+    build: ./backend
+    ports:
+      - "5000:5000"
+    environment:
+      - OPENWEATHER_API_KEY=b084de8ed662689608025d696c949e17
+      - DATABASE_URL=postgresql://postgres:password@db:5432/weatherdb
+    depends_on:
+      - db
+
+  # Frontend (React)
+  frontend:
+    build: ./frontend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+
+  # PostgreSQL Database
+  db:
+    image: postgres:13
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: weatherdb
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
